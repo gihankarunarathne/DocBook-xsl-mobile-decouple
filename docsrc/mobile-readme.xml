@@ -1,0 +1,1556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<book>
+  <title> Mobile docBook Help </title>
+  <bookinfo>
+    <legalnotice>
+      <para>Permission is hereby granted, free of charge, to any person obtaining a copy of this
+        software and associated documentation files (the <quote>Software</quote>), to deal in the
+        Software without restriction, including without limitation the rights to use, copy, modify,
+        merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+        persons to whom the Software is furnished to do so, subject to the following conditions:
+        <itemizedlist>
+          <listitem>
+            <para>The above copyright notice and this permission notice shall be included in all
+              copies or substantial portions of the Software.</para>
+          </listitem>
+          <listitem>
+            <para>Except as contained in this notice, the names of individuals credited with
+              contribution to this software shall not be used in advertising or otherwise to promote
+              the sale, use or other dealings in this Software without prior written authorization
+              from the individuals in question.</para>
+          </listitem>
+          <listitem>
+            <para>Any stylesheet derived from this Software that is publicly distributed will be
+              identified with a different name and the version strings in any derived Software will
+              be changed so that no possibility of confusion between the derived package and this
+              Software will exist.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <formalpara>
+        <title>Warranty:</title>
+        <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+        INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+        PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL DAVID CRAMER, KASUN GAJASINGHE, OR ANY
+        OTHER CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+        ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+        SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
+      </formalpara>
+      <para>This package is maintained by Gihan Karunarathne, <email>gckarunarathne AT gmail DOT com</email>
+      and Jirka Kosek, <email>jirka AT kosek DOT cz</email>.
+      </para>
+      <para>This package also includes the following software written and copyrighted by others:
+        <itemizedlist>
+          <listitem>
+            <para>Files in <filename class="directory">template_mobile/js</filename> are
+              copyrighted by <ulink url="http://jquery.com/">JQuery</ulink> under the MIT License.
+              The file <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus Hartl under
+              the MIT license.
+            </para>
+            <indexterm>
+              <primary>jquery</primary>
+            </indexterm>
+          </listitem>
+          <listitem>
+            <para>Some files in the <filename class="directory">template_mobile/content/search</filename>
+              and <filename class="directory">indexer</filename> directories were originally part of
+              N. Quaine's htmlsearch DITA plugin. The htmlsearch DITA plugin is available from the
+              <ulink url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
+              page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin was released under
+              a BSD-style license. See <filename>indexer/license.txt</filename> for details.
+              <indexterm>
+                <primary>htmlsearch</primary>
+              </indexterm>
+              <indexterm>
+                <primary>DITA</primary>
+                <secondary>htmlsearch plugin</secondary>
+              </indexterm>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Stemmers from the <ulink
+              url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
+              project</ulink> released under a BSD license.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Code from the <ulink url="http://lucene.apache.org/">Apache Lucene</ulink> search
+              engine provides support for tokenizing Chinese, Japanese, and Korean content released
+              under the Apache 2.0 license.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Code that provides weighted search results and some
+              other improvements was graciously donated by <ulink
+              url="http://www.oxygenxml.com">SyncRO Soft
+              Ltd.</ulink>, the publishers of the oXygen XML
+              Editor.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Cosmetic improvements provided by <ulink
+              url="http://docs.openstack.org"
+              >OpenStack</ulink>.
+            </para>
+          </listitem>
+        </itemizedlist> Mobile for DocBook was first developed as a <ulink
+          url="http://code.google.com/soc/">Google Summer of Code</ulink> project.
+      </para>
+    </legalnotice>
+    <copyright>
+      <year>2012</year>
+      <holder>Gihan Karunarathne</holder>
+      <holder>Jirka Kosek</holder>
+    </copyright>
+    <author>
+      <firstname>Jirka</firstname>
+      <surname>Kosek</surname>
+      <email>jirka AT kosek DOT cz</email>
+    </author>
+    <author>
+      <firstname>Gihan</firstname>
+      <surname>Karunarathne</surname>
+      <email>gckarunarathne AT gmail DOT com</email>
+    </author>
+    <pubdate>August 2012</pubdate>
+  </bookinfo>
+  <chapter>
+    <chapterinfo>
+      <abstract>
+        <!-- This becomes the brief description that appears in search results UNLESS there's a para or phrase with role="summary". If there is, then the role="summary" text wins. -->
+        <para>Overview of the package.</para>
+      </abstract>
+    </chapterinfo>
+    <title>Introduction</title>
+    <para>A common requirement for technical publications groups is to produce a Web-based help
+      format that includes a table of contents pane, a search feature, and an index similar to what
+      you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for
+      a Web application that is not exposed to the Internet or requires that the user be logged in,
+      then it is impossible to use services like Google to add search.
+      <indexterm class="singular">
+        <primary>features</primary>
+      </indexterm>
+      <itemizedlist>
+        <title>Features</title>
+        <listitem>
+          <para>Sophisticated CSS-based page layout</para>
+        </listitem>
+        <listitem>
+          <para>Client-side search.<indexterm class="singular">
+            <primary>search</primary>
+            <secondary>features</secondary>
+          </indexterm>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>Provides full content search of the documentation. Shows the search results with
+              links to chunked pages, and a small description.
+            </para>
+          </listitem>
+          <!--<listitem>
+            <para>Search results scoring/rating - The results are weighted according to how many
+              times the words in search query appears in it, is it bold or not, is in index terms
+              etc. The score out of 5 is shown by small colored boxes after each
+              search-result.
+            </para>
+          </listitem>-->
+          <listitem>
+            <para>Search results can include brief descriptions of the target.
+              <indexterm class="singular">
+                <primary>search</primary>
+                <secondary>description</secondary>
+              </indexterm>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Stemming support for English, French, and German. Stemming support can be added
+              for other languages by implementing a stemmer.
+                <indexterm class="singular">
+                  <primary>search</primary>
+                  <secondary>stemming</secondary>
+                </indexterm>
+              </para>
+            </listitem>
+            <listitem>
+              <para>Support for Chinese, Japanese, and Korean languages using code from the Lucene search engine.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Search highlighting shows where the searched term appears in the results.
+                <indexterm class="singular">
+                  <primary>search</primary>
+                  <secondary>highlighting</secondary>
+                </indexterm>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Table of contents (TOC) pane with collapsible toc tree.</para>
+        </listitem>
+        <listitem>
+          <para>Auto-synchronization of content pane and TOC.</para>
+        </listitem>
+        <listitem>
+          <para>Nicely placed small forward, backward, top links</para>
+        </listitem>
+        <listitem>
+          <para>TOC and search pane implemented without the use of a frameset.</para>
+        </listitem>
+        <listitem>
+          <para>An Ant script to generate output. You can use this
+            build file by importing it into your own or use it as a
+            model for integrating this output format into your own
+            build system. Alternatively, you can use this Ant script
+            as a template for creating your own build script or you
+            can use the
+              <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html">
+                Docbkx Maven plugin
+              </ulink>.
+            </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </chapter>
+  <chapter>
+    <title>User guide</title>
+    <para role="summary">
+      The following sections describe how to install and use the package on Ubuntu, Windows and MacOS.
+    </para>
+    <section>
+      <sectioninfo>
+        <abstract>
+          <para>Basic overview for architecture of the package</para>
+        </abstract>
+      </sectioninfo>
+      <title>Basic overview</title>
+      <para role="summary"> DocBook Mobile package take an input DocBook XML document(Ex:
+        <filename>mobile/docsrc/mobile-readme.xml</filename>) and produce mobile application such as Android
+          application(<application>.apk</application>), iOS application, BlackBerry, Windows Phone
+        so on those can be installed in particular devices.After it is installed, it can use for
+        browsing original DocBook document including features like collapsible table of contents,
+        searchable index and full-text searching. </para>
+      <para>
+        This package is using DocBook xsl style sheets to generate html content which is used for build apps using PhoneGap from <filename>mobile/docsrc/mobile-readme.xml</filename>.First it validate the documentation, build html content, add common resources and do indexing. Then according to the user command request, output will copied into particular mobile platform directory or execute necessary command/s.
+        <important><para>Sometimes html content depends on particular mobile device platform. Currently built content can be found in <filename>mobile/www</filename> directory.</para></important>
+      </para>
+      <para>
+        Then PhoneGap replaces it's <filename>www</filename> directory with Mobile output and build app for particular application with a specific method to given platform. Currently PhoneGap is supporting for seven mobile platforms. That means, you can get the Mobile output from this package and use it to build app for any of those platforms. For a quick start,
+        <itemizedlist>
+          <listitem><para> <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</ulink></para></listitem>
+          <listitem><para>
+            <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_blackberry_index.md.html#Getting%20Started%20with%20Blackberry">Getting Started with Blackberry</ulink>
+          </para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS">Getting Started with iOS</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_symbian_index.md.html#Getting%20Started%20with%20Symbian">Getting Started with Symbian</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_webos_index.md.html#Getting%20Started%20with%20WebOS">Getting Started with WebOS</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_windows-phone_index.md.html#Getting%20Started%20with%20Windows%20Phone">Getting Started with Windows Phone</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_bada_index.md.html#Getting%20Started%20with%20Bada">Getting Started with Bada</ulink></para></listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        Also it uses <ulink url="http://jquerymobile.com/">JQueryMobile</ulink> javascript framework to add more functionalities into your application. See the JQueryMobile documentation for <ulink url="http://jquerymobile.com/demos/1.1.1/docs/pages/phonegap.html">Integrage with PhoneGap</ulink>.
+      </para>
+    </section>
+    <section>
+      <title>Common Dependencies</title>
+      <para role="summary">
+        Following section and sub-sections describe how to install package dependancies on Ubuntu and Windows.
+      </para>
+      <section>
+        <sectioninfo>
+          <abstract>
+            <para>Installation On Ubuntu</para>
+          </abstract>
+        </sectioninfo>
+        <title>Installation On Ubuntu</title>
+        <para role="summary"> How to install dependancies to build Mobile package. </para>
+        <procedure>
+          <title>To install the package on Ubuntu</title>
+          <note>
+            <para>The following procedure discribe the steps to install dependancies for use this package.
+            </para>
+            <para>In addition to using the ant <filename>build.xml</filename> provided, you can also
+              use the <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html"
+                >Docbkx Maven plugin</ulink> to generate webhelp.</para>
+          </note>
+          <step>
+            <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
+              1.6</ulink> or higher.</para>
+            <substeps>
+              <step>
+                <para>
+                  To Install <application>java</application> using terminal (press <emphasis role="bold">
+                  Ctrl+Alt+T</emphasis> to open new Terminal) by typing command :
+                  <programlisting>sudo apt-get install openjdk-7-jdk</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the
+                  following at a terminal:
+                  <programlisting>java -version</programlisting></para>
+                <note>
+                  <para>To build the indexer, you must have the JDK.</para>
+                </note>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache
+              Ant</ulink> 1.8.0 or higher. See <ulink
+                url="http://ant.apache.org/manual/install.html">Ant installation
+                instructions</ulink>.
+            </para>
+            <substeps>
+              <step>
+                <para>
+                  To Install <application>ant</application> using terminal by typing the command :
+                  <programlisting>sudo apt-get install ant</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>Confirm that Ant is installed by typing the following at a terminal  :
+                  <programlisting>ant -version</programlisting>
+                </para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>To install <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip"
+              >Saxon 6.5.x</ulink> run the command using terminal :
+              <programlisting>sudo apt-get install libsaxon-java</programlisting>
+              Also some other dependancies by using terminal:
+              <programlisting>sudo apt-get install libxml-commons-resolver1.1-java</programlisting>
+              <programlisting>sudo apt-get install libxml-commons-external-java</programlisting>
+              <programlisting>sudo apt-get install libxerces2-java</programlisting>
+              You will use the path to <filename>saxon.jar</filename> in <filename>build.properties</filename> file.              <note>
+                <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
+                  it could be adapted to work with other XSLT processors. However, when you generate
+                  output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
+                    <envar>CLASSPATH</envar>.</para>
+              </note></para>
+          </step>
+        </procedure>
+      </section>
+      <section>
+        <sectioninfo>
+          <abstract>
+            <para>Installation On Windows</para>
+          </abstract>
+        </sectioninfo>
+        <title>Installation On Windows</title>
+        <procedure>
+          <title>To install the package on Windows</title>
+          <note>
+            <para>The following procedure discribe the steps to install dependancies for use this package.
+            </para>
+            <para>In addition to using the ant <filename>build.xml</filename> provided, you can also
+              use the <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html"
+                >Docbkx Maven plugin</ulink> to generate webhelp.</para>
+          </note>
+          <step>
+            <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
+                1.6</ulink> or higher.</para>
+            <substeps>
+              <step>
+                <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the
+                  following at a command prompt:
+                  <programlisting>java -version</programlisting></para>
+                <note>
+                  <para>To build the indexer, you must have the JDK.</para>
+                </note>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache
+                Ant</ulink> 1.8.0 or higher. See <ulink
+                url="http://ant.apache.org/manual/install.html">Ant installation
+                instructions</ulink>.
+            </para>
+            <substeps>
+              <step>
+                <para>Unzip the Ant binary distribution to a convenient location on your system. For
+                  example: <filename>c:\Program Files</filename>.</para>
+              </step>
+              <step>
+                <para>Set the environment variable <envar>ANT_HOME</envar> to the top-level Ant
+                  directory. For example: <filename>c:\Program Files\apache-ant-1.8.0</filename>. <tip>
+                    <para>See <ulink url="http://support.microsoft.com/kb/310519">How To Manage
+                        Environment Variables in Windows XP</ulink> for information on setting
+                      environment variables.</para>
+                  </tip></para>
+              </step>
+              <step>
+                <para>Add the Ant <filename>bin</filename> directory to your <envar>PATH</envar>.
+                  For example: <filename>c:\Program Files\apache-ant-1.8.0\bin</filename></para>
+              </step>
+              <step>
+                <para>Confirm that Ant is installed by typing the following at a command prompt:
+                  <programlisting>ant -version</programlisting></para>
+                <note>
+                  <para>If you see a message about the file <filename>tools.jar</filename> being
+                    missing, you can safely ignore it.</para>
+                </note>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>Download <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip"
+                >Saxon 6.5.x</ulink> and unzip the distribution to a convenient location on your
+              file system. You will use the path to <filename>saxon.jar</filename> in
+                <filename>build.properties</filename> file. 
+              <note>
+                <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
+                  it could be adapted to work with other XSLT processors. However, when you generate
+                  output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
+                    <envar>CLASSPATH</envar>.</para>
+              </note></para>
+          </step>
+        </procedure>
+      </section>
+      <!--<section>
+        <sectioninfo>
+          <abstract>
+            <para>Installation On Apple Mac</para>
+          </abstract>
+        </sectioninfo>
+        <title>On Apple Mac</title>
+        <para role="summary"> How to install dependancies to buid Mobile package. </para>
+      </section>-->
+    </section>
+    <section>
+      <title>Common Mobile Output</title>
+      <para role="summary">
+        How to build Mobile output without specifying Mobile platform. This section describes how to build html content without specifically build for particular mobile platform. Instead the output can view by a <application>desktop web browser</application>.
+        <note><para>
+          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <filename>cordova.js</filename>.
+        </para></note>
+      </para>
+      <procedure>
+      <step id="edit-build-properties">
+        <para>In a text editor, edit the <filename>build.properties</filename> file in the
+          mobile directory and make the changes indicated by the comments.<important>
+            <para>You must set appropriate values for <code>xslt-processor-classpath</code>,
+              <code>xercesImpl.jar</code>, and <code>xml-apis.jar</code>.</para>
+          </important>. Note that not all DocBook parameters are passed in to the xsls by the
+          <filename>build.xml</filename> by default. You may need to modify the
+          <filename>build.xml</filename> to pass in some DocBook
+          parameters.
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>The path (relative to the build.xml file) to your input document. To use your own
+              input document, create a build.xml file of your own and import this build.xml.
+              <programlisting>input-xml=docsrc/readme.xml</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The directory in which to put the output files. 
+              This directory is created if it does not exist.
+              <programlisting>output-dir=www</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The set of files to be excluded:
+              Add excluded files separated by ","/ comma.
+              Ex: ch02.*.html,ch03.html => will be excluded all files those are started with [ch02. and .html and any thing between] files and ch03.html file.
+              <programlisting>indexer-excluded-files=menubar.html,settings.html,toc.html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The file name of the menu bar of mobile application
+              <programlisting>mobile.menubar.filename=menubar.html</programlisting>
+              The file name of the settings of mobile application
+              <programlisting>mobile.settings.filename=settings.html</programlisting>
+              The file name of the table of content of mobile application
+              <programlisting>mobile.toc.filename=toc.html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If you are using a customization layer that imports mobile.xsl, use
+              this property to point to it. 
+              <programlisting>stylesheet-path=${ant.file.dir}/xsl/mobile.xsl</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If your document has image directories that need to be copied
+              to the output directory, you can list patterns here. 
+              See the Ant documentation for fileset for documentation
+              on patterns.
+              <programlisting>input-images-dirs=images/**,figures/**,graphics/**</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              By default, the ant script assumes your images are stored
+              in the same directory as the input-xml. If you store your
+              image directories in another directory, specify it here.
+              and uncomment this line.
+              <programlisting>input-images-basedir=/path/to/image/location</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Modify the follosing so that they point to your local
+              copy of the jars indicated:
+              <programlisting>
+ * Saxon 6.5 jar
+ * Xerces 2: xercesImpl.jar
+ * xml-commons: xml-apis.jar
+ 
+xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar 
+xercesImpl.jar=/usr/share/java/xercesImpl.jar
+xml-apis.jar=/usr/share/java/xml-apis.jar
+              </programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              For non-ns version only, this validates the document 
+              against a dtd.
+              <programlisting>validate-against-dtd=true</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The extension for files to be indexed (html/htm/xhtml etc.)
+              <programlisting>html.extension=html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              indexer-language is used to tell the search indexer which language
+              the docbook is written.  This will be used to identify the correct
+              stemmer, and punctuations that differs from language to language.
+              see the documentation for details. en=English, fr=French, de=German,
+              zh=Chinese, ja=Japanese etc.  
+              <programlisting>mobile.indexer.language=en</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Enables/Disables stemming
+              Stemming allows better querying for the search
+              <programlisting>enable.stemming=true</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Set admon.graphics to 1 to user graphics for note, tip, etc.
+              <programlisting>admon.graphics=0</programlisting>
+              <programlisting>suppress.footer.navigation=0</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </step>
+      <step>
+        <para>Test the package by running the command <code>ant mobile
+          -Doutput-dir=test-ouput</code> at the command line in the mobile directory. It
+          should generate a copy of this documentation in the <filename class="directory"
+            >doc</filename> directory. Open <filename>test-output\index.html</filename> 
+          the output in a browser. Once you have confirmed that the process worked, you can
+          delete the <filename class="directory">test-output</filename> directory. <important>
+            <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
+              <envar>CLASSPATH</envar> when you generate the mobile output. If you have any
+              problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
+          </important></para>
+      </step>
+      <step>
+        <para>To process your own document, simply refer to this package from another
+          <filename>build.xml</filename> in arbitrary location on your system:</para>
+        <substeps>
+          <step>
+            <para>Create a new <filename>build.xml</filename> file that defines the name of your
+              source file, the desired output directory, and imports the
+              <filename>build.xml</filename> from this package. For example:
+              <programlisting>&lt;project&gt;
+  &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/&gt;
+  &lt;property name="input-images-dirs" value="<replaceable>images/** figures/** graphics/**</replaceable>"/&gt;
+  &lt;property name="output-dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/&gt;
+  &lt;import file="<replaceable>path-to/docbook-mobile/</replaceable>build.xml"/&gt;
+&lt;/project&gt;</programlisting></para>
+          </step>
+          <step>
+            <para>From the directory containing your newly created
+              <filename>build.xml</filename> file, type <code>ant mobile</code> to build your
+              document. This mobile output can use to view by a web browser.</para>
+          </step>
+        </substeps>
+      </step>
+      </procedure>
+    </section>
+    <section>
+      <title>Generating Android app</title>
+      <para role="summary">
+        How to set configurations and create a Android app.
+      </para>
+      
+      <para> Before you begin building Android applications, understand that all Android
+        applications must be digitally signed before the system will install them on an emulator or
+        device. There are two ways to do this: with a debug key (for immediate testing on an
+        emulator or development device) or with a private key (for application distribution).
+        Following sections discribes how to do that with automated Mobile package</para>
+      <para><emphasis role="bold">Android Gestures</emphasis></para>
+      <itemizedlist>
+        <listitem><para><command>press 'Menu button'</command> : Go to settings</para></listitem>
+        <listitem><para><command>press 'Back button'</command> : Go back</para></listitem>
+        <listitem><para><command>swipe 'Left'</command> : Go to prev/next page</para></listitem>
+        <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
+        <listitem><para><command>swipe 'Up'</command> short distance : Go to scroll up</para></listitem>
+        <listitem><para><command>swipe 'Down'</command> short distance : Go to scroll down</para></listitem>
+        <!--<listitem><para><command>swipe 'Up'</command>long distance : Go to Menubar/ToC (more than 200px within 1200ms) </para></listitem>
+        <listitem><para><command>swipe 'Down'</command>long distance : Go to ToC/Menubar (more than 200px within 1200ms) </para></listitem>-->
+        <listitem><para><command>Tap Hold</command> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
+      </itemizedlist>
+      <section>
+        <title>Build Android apps</title>
+        <para role="summary">How to build Android app using Ant</para>
+        <blockquote><para>Dependancies for build Android app</para></blockquote>
+        <procedure>
+          <title>Install and configure Android</title>
+          <step>
+            <para> Download the <ulink url="http://developer.android.com/sdk/index.html">Android
+                SDK</ulink> from developer site. </para>
+          </step>
+          <step>
+            <para>
+              Extract it into directory where you like to install it. Ex: it extracted as <filename> android-sdk-linux</filename> in linux.
+            </para>
+          </step>
+          <step>
+            <para>Execute the file :</para>
+            <substeps>
+
+              <step>
+                <para>On Windows, double-click the SDK Manager.exe file at the root of the Android
+                  SDK directory.</para>
+              </step>
+              <step>
+                <para>On Mac or Linux, open a terminal and navigate to the tools/ directory in the
+                  Android SDK, then execute android sdk</para>
+              </step>
+            </substeps>
+            <para> Ex: In Linux,execute the file android in tools directory which is inside
+              extracted folder <filename> android-sdk-linux/tools/android </filename>. Then <ulink
+                url="http://developer.android.com/sdk/installing/adding-packages.html">add Platforms
+                and Packages</ulink>. </para>
+          </step>
+          <step><para>
+            Add the directories which include "<filename>android</filename>" and "<filename>adb</filename>" into PATH variables. ( those will be in <filename>android-sdk-&lt;OS&gt;/tools</filename> and <filename> android-sdk-&lt;OS&gt;/platform-tools</filename>  )
+          </para></step>
+        </procedure>
+        <itemizedlist>
+          <title>Create an Android project</title>
+          <listitem>
+            <blockquote>
+              <para>Create Mobile Output for Android</para>
+            </blockquote>
+            <para>Locate in <filename>mobile</filename> directory and run command using terminal :
+              <programlisting>$ ant mobile.android</programlisting> This will create chunk of html
+              files which can use to build Android app using PhoneGap. <warning>
+                <para> The bash scripts file <filename>mobile/android/bin/create</filename> has some
+                  modification from orginal PhoneGap package file. This is due to unexpected
+                  behaviour and some syntax errors while running on Linux. Current script is
+                  successfullly running on Ubuntu-12.04 64bit. Any changes that add to orginal
+                  script commented out in a way that user can identified those with "docbook" tag.
+                  On any error, change them into previous bash lines. </para>
+              </warning>
+            </para>
+          </listitem>
+          <listitem>
+            <important>
+              <para>IMPORTANT : The current script,always perform with newest sdk on your machine.
+                If you want to decide the version, then change the line :
+                <programlisting>
+TARGET=$($ANDROID_BIN list targets \
+| grep id: | tail -1 | cut -f 2 -d ' ' )
+</programlisting>
+                with <programlisting>TARGET=&lt;target_number&gt;</programlisting>. This means the
+                platform number of Android target vertion which is given under
+                <programlisting>$ android list targets</programlisting> Please refer for more
+                details about <ulink
+                  url="http://developer.android.com/tools/devices/managing-avds-cmdline.html#listingtargets"
+                  > Managing AVDs</ulink>. <warning>
+                  <para> Also check the "Type: Platform", but not "Type: Add-on".</para>
+                </warning></para>
+            </important>
+          </listitem>
+        </itemizedlist>
+        <itemizedlist>
+          <listitem>
+            <para>Run the create command with the following parameters:</para>
+            <itemizedlist>
+              <listitem>
+                <para> Path to your new Cordova Android project </para>
+              </listitem>
+              <listitem>
+                <para> Package name, following reverse-domain style convention </para>
+              </listitem>
+              <listitem>
+                <para> Project name </para>
+              </listitem>
+            </itemizedlist>
+            <para>
+              <programlisting>
+$ ./path/to/cordova-android/bin/create \
+/path/to/my_new_cordova_project \
+com.example.cordova_project_name \
+CordovaProjectName</programlisting>
+            </para>
+            <para><programlisting>
+Ex: $ bin/create ~/Desktop/Mobile \
+docbook.xsl.Mobile Mobile</programlisting>This command creates Android apps called "Mobile" in<filename> ~/Desktop/Mobile </filename>directory with "docbook/xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
+            <para><emphasis role="bold">on windows</emphasis>
+              <programlisting>
+$ path\to\cordova-android\bin\create.bat ^
+ path\to\my_new_cordova_project ^
+com.example.cordova_project_name ^
+CordovaProjectName</programlisting>
+            </para>
+            <para><programlisting>
+Ex: $ bin/create.bat Android xsl.Mobile DocBook</programlisting>This command creates Android apps called "DocBook" in<filename> Android </filename>directory(in the current directory) with "xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
+          </listitem>
+        </itemizedlist>
+        <section>
+          <title>Build Android app in Debug Mode</title>
+        <procedure>
+          <step>
+            <para>Before going to Build using Ant, you must setup
+              "xsl/mobile/android/android.config" file.</para>
+            <important>
+              <para>IMPORTANT : This means the platform number of Android target vertion which is
+                given under <programlisting>$ android list targets</programlisting> Please refer for
+                more details <ulink url="http://developer.android.com/tools/devices/managing-avds-cmdline.html">Android Documentaion</ulink>. 
+              </para>
+            </important>
+          </step>
+          <step>
+            <para>Go to the directory where your Android project located. Then run following command from Terminal :
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/debug</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\debug.bat</programlisting>
+            </para>
+            <note>
+              <para>NOTE: This will created an android app which is signed by debug 'keystore'. You
+                can not distribute it for end-users. But can be use for debuging purpose.For more
+                details about Expiry of the Debug Certificate, refer <ulink
+                  url="http://developer.android.com/tools/publishing/app-signing.html#debugmode"
+                  >Signing in Debug Mode</ulink> in Android Documentation and for any issue.</para>
+            </note>
+          </step>
+        </procedure>
+        </section>
+        <section>
+          <title>Build Android app in Release Mode</title>
+        <procedure>
+          
+          <important>
+            <para>It is important to note that, when you are ready to release your application for
+              end-users, you must sign it with a suitable private key. You cannot publish an
+              application that is signed with the debug key generated by the SDK tools. For more
+              details about the <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#signing">
+                Android signing process </ulink>refer Android documentation.</para>
+          </important>
+          <itemizedlist>
+            <para>When your application is ready for release to other users, you must:</para>
+            <listitem>
+              <para>Obtain a suitable private key</para>
+            </listitem>
+            <listitem>
+              <para>Compile the application in release mode</para>
+            </listitem>
+          </itemizedlist>
+          <step>
+            <title>Obtain a suitable private key</title>
+            <para> In preparation for signing your application, you must first ensure that you have
+              a suitable private key with which to sign. A suitable private key is one that: <itemizedlist>
+                <listitem>
+                  <para>Is in your possession</para>
+                </listitem>
+                <listitem>
+                  <para>Represents the personal, corporate, or organizational entity to be
+                    identified with the application</para>
+                </listitem>
+                <listitem>
+                  <para>Has a validity period that exceeds the expected lifespan of the application
+                    or application suite. A validity period of more than 25 years is
+                    recommended.</para>
+                </listitem>
+                <listitem>
+                  <para>Is not the debug key generated by the Android SDK tools.</para>
+                </listitem>
+              </itemizedlist> The key may be self-signed. If you do not have a suitable key, you
+              must generate one using Keytool. Make sure that you have Keytool available, as
+              described in <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#setup">Basic
+                Setup</ulink>. Here's an example of a Keytool command that generates a private key: <programlisting>$ keytool -genkey -v -keystore my-release-key.keystore</programlisting>
+              <programlisting>-alias alias_name -keyalg RSA -keysize 2048 -validity 10000</programlisting>
+              Running the example command above, Keytool prompts you to provide passwords for the
+              keystore and key, and to provide the Distinguished Name fields for your key. It then
+              generates the keystore as a file called my-release-key.keystore. For more details
+              about key generating refer to <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#cert"> Android
+                documentaion</ulink> Or <ulink
+                url="http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html"
+                >keytools documentaion</ulink>
+            </para>
+          </step>
+          <step>
+            <title>Compile the application in release mode</title>
+            <para> To specify your keystore and alias, open the project ant.properties file (found
+              in the root of the project directory Ex:<filename>mobile/android/output-dir</filename>
+              ) and add entries for key.store and key.alias. For example: <programlisting>key.store=path/to/my.keystore</programlisting>
+              <programlisting>key.alias=mykeystore</programlisting>
+            </para>
+            <substeps>
+              <step>
+                <para> Open a command-line and navigate to the root of your project directory (Ex:
+                  <filename>$ /path/to/my_new_cordova_project</filename> ). </para>
+              </step>
+              <step>
+                <para> Use Ant to compile your project in release mode:
+                  <programlisting>$ ant release</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>When prompted, enter you keystore and alias passwords.</para>
+              </step>
+            </substeps>
+            <para>This creates your Android application <filename>.apk</filename> file inside the
+              project bin/ directory, named <filename>your_project_name-release.apk</filename>. This
+                <filename>.apk</filename> file has been signed with the private key specified in
+                <filename>ant.properties</filename>. It's ready for installation and
+              distribution.</para>
+          </step> 
+        </procedure> 
+      </section>
+      </section>
+      <section>
+        <title>Testing Android app</title>
+        <para role="summary"/>
+        <procedure>
+          <title>Testing Android app</title>
+          <step>
+            <para>Execute following command and make an Emulator : 
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate</programlisting>
+              <emphasis role="bold">on windows</emphasis>
+              <programlisting>$ path\to\my_new_cordova_project\cordova\emulate.bat</programlisting>
+              Or otherwise use :
+              <programlisting>$ android avd</programlisting>
+              <note>
+                <para>Make sure you have created at least one Android Virtual Device. If you did not
+                  it will ask you to create one with the android command. If you have multiple AVDs,
+                  it will prompt you to select an AVD. When You are creating an Emulator, make sure
+                  the its platform version is compatible with your application.</para>
+              </note>
+            </para>
+          </step>
+          <step>
+            <para>After create an Emulator, then run it. To install created Android app, go to the
+              output directory of app and then also for 'bin' directory inside it.
+              <programlisting>$ /path/to/my_new_cordova_project/cordova launch</programlisting>
+              Or 
+              <programlisting>$ android install path/to/.apk</programlisting>
+              Ex: If you are in xsl/mobile directory,
+              <programlisting>$ android install \
+path/to/proj/bin/MobileAppActivity-debug.apk</programlisting>
+            </para>
+          </step>
+          <step><para>
+            <emphasis role="bold">Logging</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/log</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\log.bat</programlisting>
+          </para></step>
+          <step><para>
+            <emphasis role="bold">Cleaning</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/clean</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\clean.bat</programlisting>
+          </para></step>
+          <step><para>
+            <emphasis role="bold">Clean, build, deploy and launch</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/BOOM</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\BOOM.bat</programlisting>
+            <note><para>Make sure you have an emulator or a device connected.</para></note>
+          </para></step>
+          <step>
+            <para>If you already installed current app that you want to install, then you can
+              reinstall it by: 
+              <programlisting>$ android install [-r] path/to/.apk</programlisting>
+              Ex: If you are in xsl/mobile directory,
+              <programlisting>$ android install -r 
+path/to/proj/bin/MobileAppActivity-debug.apk</programlisting>
+            </para>
+          </step>
+        </procedure>
+      </section>
+    </section>
+    <section>
+      <title>Generating iOS app</title>
+      <para role="summary"> How to set configurations and create a iOS app for iPhones. This guide
+        describes how to set up your development environment for Apache PhoneGap and create an
+        application. </para>
+      <note>
+        <para> This instructions based on PhoneGap documentation on <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS"
+            >iOS</ulink> development. Refer PhoneGap documentation to more details.</para>
+      </note>
+      <para><emphasis role="bold">iOS Gestures</emphasis></para>
+      <itemizedlist>
+        <listitem><para><command>press 'Back button'</command> : Go back</para></listitem>
+        <listitem><para><command>swipe 'Left'</command> : Go to prev/next page</para></listitem>
+        <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
+        <listitem><para><command>swipe 'Up'</command> : Go to scroll up</para></listitem>
+        <listitem><para><command>swipe 'Down'</command> : Go to scroll down</para></listitem>
+        <listitem><para><command>Tap Hold</command> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
+      </itemizedlist>
+      <section>
+        <title>Using GUI (Xcode IDE)</title>
+        <procedure>
+          <step>
+            <title>Generate DocBook Mobile content</title>
+            <para>using terminal run the command <programlisting>ant mobile.iOS</programlisting>.
+              This will create html content inside <filename>mobile/www</filename> directory.
+            </para>
+          </step>
+          <step>
+            <title>Requirements :</title>
+            <substeps>
+              <step>
+                <para>Xcode 4.x</para>
+              </step>
+              <step>
+                <para>Intel-based computer with Mac OS X Lion or greater (10.7+)</para>
+              </step>
+              <step>
+                <para>Necessary for installing on device:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para>Apple iOS device (iPhone, iPad, iPod Touch)</para>
+                  </listitem>
+                  <listitem>
+                    <para>iOS developer certificate</para>
+                  </listitem>
+                </itemizedlist>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Install the iOS SDK and Configure PhoneGap :</title>
+            <substeps>
+              <step>
+                <para>Install Xcode from the <ulink
+                    url="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App
+                    Store</ulink></para>
+              </step>
+              <step>
+                <para>Necessary PhoneGap packages locate in <filename>mobile/iOS</filename></para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Setup New Project</title>
+            <substeps>
+              <step>
+                <para>Go to <filename>mobile/iOS</filename> directory.</para>
+              </step>
+              <step>
+                <para>Drag the copied <filename>bin</filename> folder to the
+                    <application>Terminal.app</application> icon in your Dock, it should launch a
+                  new Terminal window</para>
+              </step>
+              <step>
+                <para>Type in ./create &lt;project_folder_path&gt; &lt;bundle_id&gt;
+                  &lt;project_name&gt; then press "Enter"</para>
+              </step>
+              <step>
+                <para>Locate your new project folder that you just created</para>
+              </step>
+              <step>
+                <para>Launch the <filename>.xcodeproj</filename> file in the folder</para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Set up DocBook Mobile content</title>
+            <substeps>
+              <step>
+                <para>Select the folder named <filename>www</filename> in the Xcode Project
+                  Navigator</para>
+              </step>
+              <step>
+                <para>Replace this <filename>www</filename> folder with
+                    <filename>mobile/www</filename>.</para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Deploy to Simulator :</title>
+            <substeps>
+              <step>
+                <para>Change the Target in the Scheme drop-down menu on the toolbar to your project.
+                </para>
+              </step>
+              <step>
+                <para>Change the <application>Active SDK</application> in the Scheme drop-down menu
+                  on the toolbar to <application>iOS [version] Simulator</application>.</para>
+              </step>
+              <step>
+                <para>Select the Run button in your project window's toolbar</para>
+              </step>
+            </substeps>
+          </step>
+
+        </procedure>
+      </section>
+      <section>
+        <title>Using Command-Line</title>
+        <para>You can build, clean, and launch an emulator with a single command. The iOS
+          command-line tools are built upon shell scripts and rely on XCode command-line tools such
+          as xcode-select and xcodebuild</para>
+        <para><emphasis role="bold">Generate Mobile output for iOS</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para> Go to <filename>mobile</filename> directory </para>
+          </listitem>
+          <listitem>
+            <para> Run the command : <programlisting>$ ant mobile.iOS</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para> Then locate to <filename>mobile/iOS</filename> directory. </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Create a project :</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para>Run the create command with the following parameters:</para>
+            <itemizedlist>
+              <listitem>
+                <para> Path to your new Cordova iOS project </para>
+              </listitem>
+              <listitem>
+                <para> Package name, following reverse-domain style convention </para>
+              </listitem>
+              <listitem>
+                <para> Project name </para>
+              </listitem>
+            </itemizedlist>
+            <para>
+              <programlisting>
+$ ./path/to/cordova-ios/bin/create \
+/path/to/my_new_cordova_project \
+com.example.cordova_project_name \
+CordovaProjectName</programlisting>
+            </para>
+            <para><programlisting>
+Ex: $ bin/create ~/Desktop/Mobile \
+docbook.xsl.Mobile Mobile</programlisting></para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Build a project :</emphasis></para>
+        <itemizedlist>
+          <para>Locate to <filename>/path/to/my_new_cordova_project</filename> directory. For above
+            example, move to <filename>~/Desktop/Mobile</filename>.</para>
+          <listitem>
+            <para>
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/debug</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para><programlisting>Ex: $ cordova/debug</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Launch Emulator :</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para><programlisting>Ex: $ cordova/emulate</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Logging :</emphasis></para>
+        <itemizedlist>
+          <listitem><para>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/log</programlisting>
+          </para></listitem>
+          <listitem><para><programlisting>Ex: $ cordova/log</programlisting>
+          </para></listitem>
+        </itemizedlist>
+      </section>
+    </section>
+    
+    <section>
+      <title>Search indexing</title>
+      <para>Run <command>ant index</command> in the mobile directory to index the content. Running
+          <command>ant mobile</command> will do the indexing as part of the process as well.</para>
+      <para>Here's some detailed information about invoking the indexer. The indexing process is
+        pretty smooth, so probably you doesn't need to be concerned with following details. Mobile
+        Ant script does all the needed bits.</para>
+      <itemizedlist>
+        <listitem>
+          <para>Following should be in the CLASSPATH.</para>
+          <para>
+            <itemizedlist>
+              <listitem>
+                <para><filename>webhelpindexer.jar</filename>,
+                    <filename>lucene-analyzers-3.0.0.jar</filename>,
+                    <filename>lucene-core-3.0.0.jar</filename> - These three are available in the
+                  extensions/ directory of docsbook-xsl-1.76.1, and is automatically fetched to the
+                  mobile's Ant script. Go for a XSL snapshot if you can which contains the latest
+                  version http://docbook.sourceforge.net/snapshot/</para>
+              </listitem>
+              <listitem>
+                <para><filename>xercesImpl.jar</filename>, <filename> xml-apis.jar</filename> -
+                  These two comes by default with Ant 1.8.0 or prior versions. These are available
+                  under /usr/share/java directory of Linux distributions as well. Else, you may have
+                  to download, and put them to <filename>jre/lib/endorsed</filename>.</para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+        <listitem>
+          <para>The main class is <classname>com.nexwave.nquindexer.IndexerMain</classname> for the
+            version 1.76.1+. It's <classname>com.nexwave.nquindexer.IndexerTask</classname> for the
+            versions 1.76.0 and 1.76.1.</para>
+          <para>
+            <itemizedlist>
+              <listitem>
+                <para>Needs two parameters as command-line arguments:</para>
+                <para>
+                  <itemizedlist>
+                    <listitem>
+                      <para>The folder where the files to be indexed reside</para>
+                    </listitem>
+                  </itemizedlist>
+                  <itemizedlist>
+                    <listitem>
+                      <para>(Optional) language. defaults to "en". See build.properties for
+                        details</para>
+                    </listitem>
+                  </itemizedlist>
+                </para>
+              </listitem>
+            </itemizedlist>
+            <note>
+              <para>We have changed the way we invoke the webhelp indexer from the Ant Task to
+                  <code>indexertask</code> to direct invocation. This seems to have remove the
+                  <envar>CLASSPATH</envar> issue some people were having.</para>
+            </note>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <indexterm>
+        <primary>search</primary>
+        <secondary>indexing</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>indexer</primary>
+        <secondary>CLASSPATH</secondary>
+      </indexterm>
+      <para role="summary">To build the indexer, you must have installed the JDK version 1.5 or
+        higher and set the <envar>ANT_HOME</envar> environment variable. </para>
+      <indexterm>
+        <primary>ANT_HOME</primary>
+      </indexterm>
+      <indexterm>
+        <primary>indexer</primary>
+        <secondary>building</secondary>
+      </indexterm>
+    </section>
+    <section>
+      <title>Adding support for other (non-CJKV) languages</title>
+      <para>To support stemming for a language, the search mechanism requires a stemmer implemented
+        in both Java and JavaScript. The Java version is used by the indexer and the JavaScript
+        verison is used to stem the user's input on the search form. Currently the search mechanism
+        supports stemming for English and German. In addition, Java stemmers are included for the
+        following languages. Therefore, to support these languages, you only need to implement the
+        stemmer in JavaScript and add it to the template_mobile. If you do undertake this task, please
+        consider contributing the JavaScript version back to this project and to <ulink
+          url="http://snowball.tartarus.org/texts/stemmersoverview.html">Martin Porter's
+          project</ulink>.
+        <itemizedlist>
+          <listitem>
+            <para>Danish</para>
+          </listitem>
+          <listitem>
+            <para>Dutch</para>
+          </listitem>
+          <listitem>
+            <para>Finnish</para>
+          </listitem>
+          <listitem>
+            <para>Hungarian</para>
+          </listitem>
+          <listitem>
+            <para>Italian</para>
+          </listitem>
+          <listitem>
+            <para>Norwegian</para>
+          </listitem>
+          <listitem>
+            <para>Portuguese</para>
+          </listitem>
+          <listitem>
+            <para>Romanian</para>
+          </listitem>
+          <listitem>
+            <para>Russian</para>
+          </listitem>
+          <listitem>
+            <para>Spanish</para>
+          </listitem>
+          <listitem>
+            <para>Swedish</para>
+          </listitem>
+          <listitem>
+            <para>Turkish</para>
+          </listitem>
+        </itemizedlist><indexterm>
+          <primary>stemming</primary>
+        </indexterm>
+      </para>
+    </section>
+    <section>
+      <title>Adding images</title>
+      <para>This section shows how to add images to Mobile. For that, follow the simple procedure given.<itemizedlist>
+          <listitem>
+            <para>Put the images in a subdirectory of your source file directory. For example
+                <filename>docsrc/images</filename>.</para>
+          </listitem>
+          <listitem>
+            <para>Then refer to those images from your docbook document.</para>
+            <para>Following image is from <emphasis role="bold"
+                >mobile/docsrs/images/sample.jpg</emphasis>. The docbook code is shown
+              below.</para>
+            <para>
+              <figure>
+                <title>Sample Image</title>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/sample.jpg" format="JPG"/>
+                  </imageobject>
+                </mediaobject>
+              </figure>
+            </para>
+            <example>
+              <title>Example code for adding images. Note down the relative path used</title>
+              <programlisting>&lt;figure>
+  &lt;title>Sample&lt;/title>
+  &lt;mediaobject>
+    &lt;imageobject>
+      &lt;imagedata fileref="<emphasis role="bold">images/sample.jpg</emphasis>" format="JPG"/>
+    &lt;/imageobject>
+  &lt;/mediaobject>
+&lt;/figure></programlisting>
+            </example>
+          </listitem>
+          <listitem>
+            <para> The <filename>build.properties</filename> file controls what directories are
+              copied over from the source tree to the output
+              tree:<programlisting># If your document has image directories that need to be copied
+# to the output directory, you can list patterns here. 
+# See the Ant documentation for fileset for documentation
+# on patterns.
+input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Developer guide</title>
+    <para role="summary">
+      This chapter provides an overview about how mobile is implemented.
+    </para>
+    <para>
+      
+    </para>
+    <section>
+      <title>Design of Mobile Content</title>
+      <para role="summary">
+        An overview of Mobile file structure.
+      </para>
+      <para>DocBook Mobile page structure is fully based on html5, javascripts and CSS. The data
+        content pages can be divided in to three main sections 
+        <itemizedlist>
+          <listitem>
+            <para>Header: Header is a separate Div with <quote>data-role='header'</quote> in
+              jquerymobile which include navigation button(prev, next etc.) and page title.</para>
+          </listitem>
+          <listitem>
+            <para>Content: This includes the content of the documentation. The processing of this
+              part is done by <ulink
+                url="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"> DocBook
+                XSL Chunking customization</ulink>. Further css-styling applied from
+                <filename>positioning.css</filename>. Event handling and page navigation enable via
+              jquery mobile.</para>
+          </listitem>
+          <listitem><para>
+            Footer : This include navigation to prev, next , up and home locations.
+          </para></listitem>
+        </itemizedlist></para>
+        <para>Futher it seperate into static html files like Menubar, Settings and ToC. Index.html will add if it want to redirect into <filename>www/content/index.html</filename>. 
+        <itemizedlist>
+          <listitem>
+            <para>ToC : Table of content to navigate into chapters and sections.</para>
+          </listitem>
+          <listitem><para>Menu Bar : Search feature, change font-size,font-family etc...</para></listitem>
+          <listitem><para>Settings : Basic settings for Mobile app</para></listitem>
+        </itemizedlist>
+        <indexterm>
+          <primary>design</primary>
+        </indexterm></para>
+      <section>
+        <title>Mobile Table of Content</title>
+        <para role="summary">
+          An overview about Table of Content page.
+        </para>
+        <para>
+          Table of Content creates as a separate file. It includes links to chapters and sections. The ToC depth oflevels and hierarchy of chapters and sections. Following variables in <filename>mobile/xsl/mobile.xsl</filename> can use to controll the ToC structure.
+          <programlisting>
+&lt;xsl:param name="chunk.first.sections"
+  select="1"/&gt;</programlisting>
+          If non-zero, a chunk will be created for the first top-level sect1 or section elements in each component. Otherwise, that section will be part of the chunk for its parent.
+          <programlisting>
+&lt;xsl:param name="chunk.section.depth"
+  select="5"/&gt;</programlisting>
+          This parameter sets the depth of section chunking.
+          <programlisting>
+&lt;xsl:param name="toc.max.depth"&gt;
+  5&lt;/xsl:param &gt;</programlisting>
+          Specifies the maximal depth of TOC on all levels.
+          <programlisting>
+&lt;xsl:param name="toc.section.depth"&gt;
+  4&lt;/xsl:param &gt;</programlisting>
+          Specifies the depth to which recursive sections should appear in the TOC.
+          <programlisting>
+&lt;xsl:param name="generate.section.toc.level"
+  select="3"&gt;&lt;/xsl:param&gt;</programlisting>
+          If, for example, generate.section.toc.level is 3, TOCs will be generated in first, second, and third level sections, but not in fourth level sections.
+        </para>
+      </section>
+      <section>
+        <title>Mobile Menu Bar</title>
+        <para role="summary">
+          An overview about Menu Bar page.
+        </para>
+        <para>
+          Menubar creates as a separate file in mobile output. It includes search, change font-size, change font-famiy and a back button. When user trigger a search,the results will append to &lt;div id="searchResults"&gt;. It has an associated javascript file to handle selection menu options. The values will store with cookies. It uses jquery.cookies java script library for that purpose. When use select the option <emphasis role="bold">remember search word</emphasis> ,last search word will append when opening <filename>Menubar.html</filename>.
+        </para>
+      </section>
+      <section>
+        <title>Mobile Settings</title>
+        <para role="summary">
+          An overview about Settings page.
+        </para>
+        <para>
+          Settings page also created as a separate file in mobile output. It includes some basic settings which can be change to possible predefined values. There is a associated javascript file with this html page. It is responsible for set default values when initialising the mobile app. After that user can change the values also. It has the set of settings as following :
+          <itemizedlist>
+            <listitem><para><emphasis role="bold">ToC</emphasis> : View the ToC</para></listitem>
+            <listitem><para><emphasis role="bold">Menu bar</emphasis> : View the Menubar</para></listitem>
+            <listitem><para><emphasis role="bold">Menu Bar Swipe Direction</emphasis> : Direction that trigger pop up Menu Bar (Up/Down)</para></listitem>
+            <listitem><para><emphasis role="bold">ToC Swipe Direction</emphasis> : Direction that trigger pop up ToC (Up/Down)</para></listitem>
+            <listitem><para><emphasis role="bold">Pop Up Menu Bar</emphasis> : Pop Up/not Menu Bar</para></listitem>
+            <listitem><para><emphasis role="bold">Pop Up ToC</emphasis> : Pop Up/not ToC</para></listitem>
+            <listitem><para><emphasis role="bold">Prev Page Direction</emphasis> : Swipe direction to move to Previous page</para></listitem>
+            <listitem><para><emphasis role="bold">Next Page Direction</emphasis> : Swipe direction to move to Next page</para></listitem>
+            <listitem><para><emphasis role="bold">Remember Last Search Word</emphasis> : Remember the last search word. If so, it will appear when move to menu bar</para></listitem>
+            <listitem><para><emphasis role="bold">Reset</emphasis> : Reset the settings to default values</para></listitem>
+          </itemizedlist>
+        </para>
+      </section>
+    </section>
+    <section>
+      <title>Search</title>
+      <para role="summary">Overview design of Search mechanism.</para>
+      <para>
+        DocBook Mobile is currently using <filename>webhelpindexer.jar</filename> which is used in Mobile.
+        It plans to replace <application>webhelpindexer</application> storing method with <database>
+        <ulink url="http://docs.phonegap.com/en/2.0.0/cordova_storage_storage.md.html#Storage"> Web SQL database 
+        </ulink></database>
+      </para>
+      <para>The serching is a fully client-side implementation of querying texts for content
+        searching. There's no server involved. So, the search queries by the users are processed by
+        JavaScript inside the browser, and displays the matching results by comparing the query with
+        a simplified 'index' that too resides in JavaScript. Mainly the search mechanism has two
+        parts.
+        <itemizedlist>
+          <listitem>
+            <para>Indexing: First we need to traverse the content in the docs/content folder and
+              index the words in it. This is done by <filename>webhelpindexer.jar</filename> in
+              <filename>xsl/extentions/</filename> folder. You can invoke it by <code>ant
+                index</code> command from the root of mobile of directory. The source of
+              webhelpindexer is now moved to it's own location at
+              <filename>trunk/xsl-webhelpindexer/</filename>. Checkout the Docbook trunk svn
+              directory to get this source. Then, do your changes and recompile it by simply running
+              <code>ant</code> command. My assumption is that it can be opened by Netbeans IDE by
+              one click. Or if you are using IntelliJ Idea, you can simply create a new project from
+              existing sources. Indexer has extensive support for features such as word scoring,
+              stemming of words, and support for languages English, German, French. For CJK
+              (Chinese, Japanese, Korean) languages, it uses bi-gram tokenizing to break up the
+              words (since CJK languages does not have spaces between words).
+            </para>
+            <para> When <code>ant index</code> is run, it generates five output files: 
+              <itemizedlist>
+                <listitem>
+                  <para><filename>htmlFileList.js</filename> - This contains an array named
+                      <code>fl</code> which stores details all the files indexed by the indexer.
+                    Further, the doStem in it defines whether stemming should be used. It defaults
+                    to false.</para>
+                </listitem>
+                <listitem>
+                  <para><filename>htmlFileInfoList.js</filename> - This includes some meta data
+                    about the indexed files in an array named <code>fil</code>. It includes details
+                    about file name, file (html) title, a summary of the content.Format would look
+                    like, <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an
+                      overview of how mobile is implemented.";</code>
+                  </para>
+                </listitem>
+                <listitem>
+                  <para><filename>index-*.js</filename> (Three index files) - These three files
+                    actually stores the index of the content. Index is added to an array named
+                      <code>w</code>.</para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+          <listitem>
+            <para> Querying: Query processing happens totally in client side. Following JavaScript
+              files handles them. 
+              <itemizedlist>
+                <listitem>
+                  <para><filename>nwSearchFnt.js</filename> - This handles the user query and
+                    returns the search results. It does query word tokenizing, drop unnecessary
+                    punctuations and common words, do stemming if docbook language supports it,
+                    etc.</para>
+                </listitem>
+                <listitem>
+                  <para><filename>{$indexer-language-code}_stemmer.js</filename> - This includes the
+                    stemming library. <filename>nwSearchFnt.js</filename> file calls
+                    <code>stemmer</code> method in this file for stemming. ex: <code>var stem =
+                      stemmer(foobar);</code>
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <indexterm>
+          <primary>search</primary>
+        </indexterm>
+      </para>
+      <section>
+        <title>New Stemmers</title>
+        <para role="summary">Adding new Stemmers is very simple.</para>
+        <para>Currently, only English, French, and German stemmers are integrated in to Mobile. But
+          the code is extensible such that you can add new stemmers easily by few steps.</para>
+        <para>What you need: <itemizedlist>
+          <listitem>
+            <para>You'll need two versions of the stemmer; One written in JavaScript, and another
+              in Java. But fortunately, Snowball contains Java stemmers for number of popular
+              languages, and are already included with the package. You can see the full list in
+              <ulink url="ch02s04.html">Adding support for other (non-CJKV) languages</ulink>.
+              If your language is listed there, Then you have to find javascript version of the
+              stemmer. Generally, new stemmers are getting added in to <ulink
+                url="http://snowball.tartarus.org/otherlangs/index.html">Snowball Stemmers in
+                other languages</ulink> location. If javascript stemmer for your language is
+              available, then download it. Else, you can write a new stemmer in JavaScript using
+              SnowBall algorithm fairly easily. Algorithms are at <ulink
+                url="http://snowball.tartarus.org/">Snowball</ulink>. </para>
+          </listitem>
+          <listitem>
+            <para>Then, name the JS stemmer exactly like this:
+              <filename>{$language-code}_stemmer.js</filename>. For example, for Italian(it),
+              name it as, <filename>it_stemmer.js</filename>. Then, copy it to the
+              <filename>docbook-mobile/template_mobile/content/search/stemmers/</filename> folder. (I
+              assumed <filename>docbook-mobile</filename> is the root folder for mobile.) <note>
+                <para>Make sure you changed the <code>mobile.indexer.language</code> property in
+                  <filename>build.properties</filename> to your language. </para>
+              </note>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Now two easy changes needed for the indexer.</para>
+            <itemizedlist>
+              <listitem>
+                <para>Open
+                  <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/IndexerTask.java</filename>
+                  in a text editor and add your language code to the
+                  <code>supportedLanguages</code> String Array. </para>
+                <example>
+                  <title>Add new language to supportedLanguages array</title>
+                  <para> change the Array from,
+                    <programlisting>
+private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko"}; 
+    //currently extended support available for
+    // English, German, French and CJK (Chinese, Japanese, Korean) languages only.
+</programlisting>
+                    To,</para>
+                  <programlisting>
+private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <emphasis>"it"</emphasis>}; 
+  //currently extended support available for
+  // English, German, French, CJK (Chinese, Japanese, Korean), and Italian languages only.
+                    </programlisting>
+                </example>
+              </listitem>
+              <listitem>
+                <para> Now, open
+                  <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/SaxHTMLIndex.java</filename>
+                  and add the following line to the code where it initializes the Stemmer (Search
+                  for <code>SnowballStemmer stemmer;</code>). Then add code to initialize the
+                  stemmer Object in your language. It's self understandable. See the example. The
+                  class names are at:
+                  <filename>docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</filename>. </para>
+                <example>
+                  <title>Initialize correct stemmer based on the
+                    <code>mobile.indexer.language</code> specified</title>
+                  <programlisting>
+      SnowballStemmer stemmer;
+      if(indexerLanguage.equalsIgnoreCase("en")){
+           stemmer = new EnglishStemmer();
+      } else if (indexerLanguage.equalsIgnoreCase("de")){
+          stemmer= new GermanStemmer();
+      } else if (indexerLanguage.equalsIgnoreCase("fr")){
+          stemmer= new FrenchStemmer();
+      }
+<emphasis>else if (indexerLanguage.equalsIgnoreCase("it")){ //If language code is "it" (Italian)
+          stemmer= new italianStemmer();  //Initialize the stemmer to <code>italianStemmer</code> object.
+      } </emphasis>      
+      else {
+          stemmer = null;
+      }
+</programlisting>
+                </example>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+        </para>
+        <para>That's all. Now run <code>ant build-indexer</code> to compile and build the java code.
+          Then, run <code>ant mobile</code> to generate the output from your docbook file. For any
+          questions, contact us or email to the docbook mailing list
+          <email>docbook-apps@lists.oasis-open.org</email>.</para>
+        <indexterm>
+          <primary>stemmer</primary>
+        </indexterm>
+      </section>
+    </section>
+  </chapter>
+
+</book>
