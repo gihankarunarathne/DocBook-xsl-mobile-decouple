@@ -25,6 +25,7 @@
   <xsl:param name="mobile.toc.filename">toc.html</xsl:param>
   <xsl:param name="mobile.setting.filename">settings.html</xsl:param>
   <xsl:param name="mobile.menubar.filename">menubar.html</xsl:param>
+  <xsl:param name="mobile.taphold.filename">tapholdDialog.html</xsl:param>
   <xsl:param name="mobile.base.dir">www</xsl:param>
   <xsl:param name="mobile.indexer.language">en</xsl:param>
   <xsl:param name="mobile.default.topic"/>
@@ -409,7 +410,7 @@
     <xsl:call-template name="menubar.html"/>
     
 <!--    <xsl:if test="('1'=$mobile.taphold)">-->
-      <xsl:call-template name="tapholdDialog.html" />
+      <xsl:call-template name="tapholdDialog" />
 <!--    </xsl:if>-->
     
     <xsl:call-template name="l10n.js"></xsl:call-template>
@@ -467,6 +468,9 @@
                 data-inline="true" data-rel="dialog" data-transition="flip">
                 <xsl:attribute name="id">
                   <xsl:value-of select="concat($id_current,'_taphold')"/>
+                </xsl:attribute>
+                <xsl:attribute name="href">
+                  <xsl:value-of select="$mobile.taphold.filename"/>
                 </xsl:attribute>
               </a>
             </xsl:if>
@@ -591,7 +595,11 @@
       <!-- show the "Options" to user such as ToC, menubar and settings -->
       <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right"
         data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true"
-        data-rel="dialog" data-transition="flip">Options</a>
+        data-rel="dialog" data-transition="flip">Options
+      <xsl:attribute name="href">
+        <xsl:value-of select="$mobile.taphold.filename"/>
+      </xsl:attribute>
+      </a>
       
       <!-- add swipe scripts to navigate -->
       <xsl:variable name="nav_prev">
@@ -1686,7 +1694,7 @@
   <!-- ============================================================ -->
   <!-- = Tap Hold Dialog                                          = -->
   <!-- ============================================================ -->
-  <xsl:template name="tapholdDialog.html">
+  <xsl:template name="tapholdDialog">
     <xsl:call-template name="write.chunk">
       <xsl:with-param name="filename">
         <!--<xsl:choose>
@@ -1698,7 +1706,7 @@
           </xsl:otherwise>
         </xsl:choose>-->
         
-        <xsl:value-of select="concat($mobile.base.dir,'/content/','tapholdDialog.html')"/>
+        <xsl:value-of select="concat($mobile.base.dir,'/content/',$mobile.taphold.filename)"/>
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'"/>
       <xsl:with-param name="encoding" select="'utf-8'"/>
