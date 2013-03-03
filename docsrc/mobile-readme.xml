@@ -427,7 +427,7 @@
       <para role="summary">
         How to build Mobile output without specifying Mobile platform. This section describes how to build html content without specifically build for particular mobile platform. Instead the output can view by a <application>desktop web browser</application>.
         <note><para>
-          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <filename>cordova.js</filename>.
+          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <filename>cordova-version.js</filename>.
         </para></note>
       </para>
       <procedure>
@@ -669,7 +669,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
           <listitem>
             <important>
               <para>IMPORTANT : The current script,always perform with newest sdk on your machine.
-                If you want to decide the version, then change the line :
+                If you want to decide the version, then change the line of <filename>android/bin/create</filename> shell script file:
                 <programlisting>
 TARGET=$($ANDROID_BIN list targets \
 | grep id: | tail -1 | cut -f 2 -d ' ' )

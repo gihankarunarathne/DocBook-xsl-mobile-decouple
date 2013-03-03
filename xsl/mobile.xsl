@@ -62,7 +62,7 @@
   <xsl:param name="jquery.mobile.css">../css/themes/default/jquery.mobile-1.1.0.min.css</xsl:param>
   <xsl:param name="jquery.js">../js/jquery-1.7.1.min.js</xsl:param>
   <xsl:param name="jquery.mobile.js">../js/jquery.mobile-1.1.0.min.js</xsl:param>
-  <xsl:param name="mobile.device.platform">none</xsl:param>
+  <xsl:param name="mobile.device.platform">all</xsl:param>
   <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
   <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
   <xsl:param name="mobile.swipeupdown">
@@ -74,7 +74,8 @@
   <xsl:param name="mobile.taphold">
     <xsl:choose>
       <xsl:when
-        test="($mobile.device.platform = 'android')or($mobile.device.platform = 'iOS')or($mobile.device.platform='none')"
+        test="($mobile.device.platform='android')or($mobile.device.platform='iOS')
+        or($mobile.device.platform='none')"
         >1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
@@ -179,7 +180,8 @@
     <link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css"/>
 
     <xsl:choose>
-      <xsl:when test="('android'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
+      <xsl:when test="('android'=$mobile.device.platform)or('iOS'=$mobile.device.platform)
+        or('all'=$mobile.device.platform)">
         <script type="text/javascript" charset="utf-8">
           <xsl:attribute name="src">
             <xsl:value-of select="$mobile.cordova.path"/>
@@ -400,7 +402,8 @@
     <xsl:call-template name="toc.html"/>
     
     <xsl:choose>
-      <xsl:when test="('none'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
+      <xsl:when test="('none'=$mobile.device.platform) or ('all'=$mobile.device.platform)
+        or ('android'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
         <xsl:call-template name="index.html"/>
       </xsl:when>
     </xsl:choose>
@@ -1024,7 +1027,8 @@
           <body> If not automatically redirected, click here to: <a id="redir" href="content/{$mobile.start.filename}"
               >Start Reading...</a>
             <xsl:choose>
-              <xsl:when test="'iOS'=$mobile.device.platform">
+              <xsl:when test="('all'=$mobile.device.platform)or('android'=$mobile.device.platform)
+                or('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -1072,7 +1076,8 @@
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <!-- Add resources to Android device -->
             <xsl:choose>
-              <xsl:when test="('android'=$mobile.device.platform)or('iOS'=$mobile.device.platform)">
+              <xsl:when test="('all'=$mobile.device.platform) or ('android'=$mobile.device.platform)
+                or ('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -1377,7 +1382,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
-              <xsl:when test="('android'=$mobile.device.platform)or('iOS'=$mobile.device.platform)">
+              <xsl:when test="('all'=$mobile.device.platform) or ('android'=$mobile.device.platform)
+                or ('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -1621,7 +1627,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
-              <xsl:when test="'android'=$mobile.device.platform">
+              <xsl:when test="('all'=$mobile.device.platform) or ('android'=$mobile.device.platform)
+                or ('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -1717,7 +1724,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
-              <xsl:when test="('android'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
+              <xsl:when test="('all'=$mobile.device.platform)or('android'=$mobile.device.platform)
+                or ('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
