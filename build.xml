@@ -10,7 +10,8 @@
   <property name="extensions.dir" value="${ant.file.dir}/../extensions"/>
 
   <path id="classpath">
-    <pathelement location="${extensions.dir}/webhelpindexer.jar"/>
+<!--    <pathelement location="${extensions.dir}/webhelpindexer.jar"/> Due to not versioning the webhelpindexer,to avoid conflicts-->
+    <pathelement location="${ant.file.dir}/extensions/webhelpindexer.jar"/>
     <pathelement location="${extensions.dir}/lucene-analyzers-3.0.0.jar"/>
     <pathelement location="${extensions.dir}/lucene-core-3.0.0.jar"/>
     <pathelement location="${extensions.dir}/tagsoup-1.2.1.jar"/>
@@ -61,8 +62,16 @@
       <fileset dir="${ant.file.dir}/template_mobile">
         <include name="**/*"/>
         <exclude name="**/content/search/**"/>
+        <exclude name="**/PhoneGapBuild/**"/>
       </fileset>
     </copy>
+    <!-- copy xml configurations for PhoneGap Build -->
+    <copy todir="${output-dir}">
+      <fileset dir="${ant.file.dir}/template_mobile/PhoneGapBuild">
+        <include name="**/**" if="phonegap.build"/>
+      </fileset>
+    </copy>
+    
     <!-- Very simple-minded copy to handle the source document's images -->
     <!-- Customize mobile.xsl to produce ant file to copy images actually used? -->
     <dirname property="input-images-basedir" file="${input-xml}"/>
@@ -79,6 +88,7 @@
         <include name="**/*"/>
         <exclude name="**/content/search/*.props"/>
         <exclude name="**/content/search/stemmers/*"/>
+        <exclude name="**/PhoneGapBuild/**"/>
       </fileset>
     </copy>
 
@@ -139,13 +149,21 @@
   </target>
 
   <!-- Output of chunked htmls for all platforms  -->
-  <target name="mobile" depends="validate , chunk , add_resources , index"/>
+  <target name="build" depends="validate , chunk , add_resources , index"/>
+  
+  <!-- Output chunked of htmls for build apps with "PhoneGap Build" cloud service -->
+  <target name="mobile">
+    <property name="phonegap.build" value="true"/>
+    <antcall>
+      <target name="build"/>
+    </antcall>
+  </target>
 
   <!-- Output chunked of htmls for webview: don't need phonegap library -->
   <target name="mobile.web">
     <property name="mobile.device.platform" value="none"/>
     <antcall>
-      <target name="mobile"></target>
+      <target name="build"></target>
     </antcall>
   </target>
   
@@ -153,8 +171,8 @@
   <target name="mobile.android">
     <property name="mobile.device.platform" value="android"/>
     <antcall>
-      <target name="mobile"/>
-      <target name="nested.android"/>
+      <target name="build"/>
+<!--      <target name="nested.android"/>-->
     </antcall>
   </target>
 
@@ -162,8 +180,8 @@
   <target name="mobile.iOS">
     <property name="mobile.device.platform" value="iOS"/>
     <antcall>
-      <target name="mobile"/>
-      <target name="nested.iOS"/>
+      <target name="build"/>
+<!--      <target name="nested.iOS"/>-->
     </antcall>
   </target>
 
@@ -171,8 +189,8 @@
   <target name="mobile.blackberry">
     <property name="mobile.device.platform" value="blackberry"/>
     <antcall>
-      <target name="mobile"/>
-      <target name="nested.blackberry"/>
+      <target name="build"/>
+<!--      <target name="nested.blackberry"/>-->
     </antcall>
   </target>
 
@@ -180,12 +198,12 @@
   <target name="mobile.windows_phone_8">
     <property name="mobile.device.platform" value="windows_phone_8"/>
     <antcall>
-      <target name="mobile"></target>
+      <target name="build"/>
     </antcall>
   </target>
   
   <!-- Symbian -->
-  <target name="mobile.symbian" depends="mobile"/>
+  <target name="mobile.symbian" depends="build"/>
 
   <target name="clean">
     <delete dir="${output-dir}"/>

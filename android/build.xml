@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="AndroidBuild" basedir="." default="help">
+<project name="AndroidBuild" basedir=".">
 
   <dirname property="android.file.dir" file="${ant.file.AndroidBuild}"/>
   <loadproperties srcFile="${android.file.dir}/build.properties"/>
@@ -12,13 +12,6 @@
     <copy todir="${android.file.dir}/bin/templates/project/assets/www">
       <fileset dir="${android.file.dir}/../www"/>
     </copy>
-  </target>
-
-  <target name="help" description="User help for Android build.">
-    <echo> android_unsigned_apk : To create an unsigned .apk, it can't distribute to end-users.
-      android_debug_apk : To create an debug .apk by using debug key. create-android-project :
-      Create an android project and copy necessary packages form PhoneGap clean : Clean the output
-      directory </echo>
   </target>
 
 </project>
