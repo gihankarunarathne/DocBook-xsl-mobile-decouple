@@ -598,10 +598,11 @@
       <!-- show the "Options" to user such as ToC, menubar and settings -->
       <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right"
         data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true"
-        data-rel="dialog" data-transition="flip">Options
+        data-rel="dialog" data-transition="flip">
       <xsl:attribute name="href">
         <xsl:value-of select="$mobile.taphold.filename"/>
       </xsl:attribute>
+        <xsl:text>Options</xsl:text>
       </a>
       
       <!-- add swipe scripts to navigate -->

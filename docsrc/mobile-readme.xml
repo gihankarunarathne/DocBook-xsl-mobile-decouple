@@ -845,7 +845,9 @@ CordovaProjectName</programlisting>
 Ex: $ bin/create.bat Android xsl.Mobile DocBook</programlisting>This command creates Android apps called "DocBook" in<filename> Android </filename>directory(in the current directory) with "xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
           </listitem>
         </itemizedlist>
-        
+        <important><para>
+          Go to newly created Android project <filename>path/to/my_new_cordova_project</filename> and replace <filename>path\to\my_new_cordova_project/asserts/www</filename> directory with <filename>mobile/www</filename> directory.
+        </para></important>
         <section>
           <title>Build Android app in Debug Mode</title>
         <procedure>
@@ -1186,6 +1188,9 @@ Ex: $ bin/create ~/Desktop/Mobile \
 docbook.xsl.Mobile Mobile</programlisting></para>
           </listitem>
         </itemizedlist>
+        <important><para>
+          Go to newly created iOS project <filename>path/to/my_new_cordova_project</filename> and replace <filename>www</filename> directory with <filename>mobile/www</filename> directory.
+        </para></important>
         <para><emphasis role="bold">Build a project :</emphasis></para>
         <itemizedlist>
           <para>Locate to <filename>/path/to/my_new_cordova_project</filename> directory. For above

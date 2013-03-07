@@ -6,9 +6,10 @@ In previous version, it has some components from the "PhoneGap". But it seems to
 1. First you have to download the docbook xsl-1.77.1 version from http://sourceforge.net/projects/docbook/files/docbook-xsl/1.77.1/
 2. Also download the Mobile package as zip from here.
 3. Then add Mobile directory into docbook-xsl like docbook-xsl-1.77.1/mobile.
-4. Then replace old docbook-xsl-1.77.1/extensions/webhelpIndexer.jar with the 
-	https://github.com/gihankarunarathne/DocBook-xsl-mobile/blob/master/webhelpindexer.jar.
+4. (Optional) Then replace old docbook-xsl-1.77.1/extensions/webhelpIndexer.jar
   Now, you finished with settings up the package to use.
+
+To see how to use the this package please read documentation at http://gihankarunarathne.github.com/DocBook-xsl-mobile/content/index.html
 
 ### Support Platforms
 	
@@ -24,11 +25,20 @@ In previous version, it has some components from the "PhoneGap". But it seems to
   ```
 ```    key: " * " - currently implemented```
 
-### HTMLs for all platforms
+### HTMLs for web view
 
-To create chunked htmls which can be used in "www" folder of PhoneGap:
+To create HTML for web view:
 ```
-	$ ant mobile
+	$ ant mobile.web
+```
+
+### Build using PhoneGap Build
+
+To create asserts zip file for build using PhoneGap cloud service at https://build.phonegap.com/
+Note: Don't need to install any tool or SDK
+```
+
+  $ ant mobile
 ```
 
 ### Android
