@@ -36,7 +36,7 @@
           $("#id_ch02s07_html").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
-            }else{
+            }else if("swipeLeft" == $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
             }
           });
@@ -44,7 +44,7 @@
           $("#id_ch02s07_html").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
-            }else{
+              }else if("swipeRight" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
             }
           });

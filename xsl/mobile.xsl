@@ -664,7 +664,7 @@
           $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
-            }else{
+            }else if("swipeLeft" == $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
             }
           });
@@ -672,7 +672,7 @@
           $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
-            }else{
+              }else if("swipeRight" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
             }
           });
