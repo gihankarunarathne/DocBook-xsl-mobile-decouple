@@ -231,7 +231,7 @@
   <target name="mobile-help">
     <echo> Available PhoneGap Build commands
       1. $ant mobile : Build apps for all platforms using "PhoneGap Build".
-											 For more details check on DocBook Mobile documentaion on /www/ directory
+      For more details check on DocBook Mobile documentaion on /www/ directory
       
     </echo>
   </target>
