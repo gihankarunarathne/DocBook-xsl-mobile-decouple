@@ -63,6 +63,7 @@
         <include name="**/*"/>
         <exclude name="**/content/search/**"/>
         <exclude name="**/PhoneGapBuild/**"/>
+        <exclude name="**/js-dev/**"/>
       </fileset>
     </copy>
     <!-- copy xml configurations for PhoneGap Build -->
@@ -89,6 +90,7 @@
         <exclude name="**/content/search/*.props"/>
         <exclude name="**/content/search/stemmers/*"/>
         <exclude name="**/PhoneGapBuild/**"/>
+				<exclude name="**/js-dev/**"/>
       </fileset>
     </copy>
 
