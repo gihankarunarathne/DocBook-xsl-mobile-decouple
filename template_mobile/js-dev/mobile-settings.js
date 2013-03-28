@@ -85,9 +85,9 @@ var mobile = new function(){
 // set default pop up toc
   this.defpopuptoc = 'showtoc';
 // set defaulf Prev Page swipe direction
-  this.defPrevPage = 'swipeLeft';
+  this.defPrevPage = 'swipeRight';
 // set defaulf Next Page swipe direction
-  this.defNextPage = 'swipeRight';
+  this.defNextPage = 'swipeLeft';
 // remember-search-word
   this.defremembersearchword = 'remembersearchword';
   
@@ -291,7 +291,7 @@ $(document).bind('pageinit',function () {
           }
           // refresh page after reset values
           refreshSelectMenus();
-          alert("Prev page pp:"+mobile.getMobileValue("prevpage")+" np:"+mobile.getMobileValue("nextpage"));
+          //alert("Prev page pp:"+mobile.getMobileValue("prevpage")+" np:"+mobile.getMobileValue("nextpage"));
         }
         //alert(String.concat("cookie is created with ",$("#select-prev-page-direction").val()," and now cookie is " ,mobile.getMobileValue('prevpage')));
     } catch (err) {
@@ -316,7 +316,7 @@ $(document).bind('pageinit',function () {
           }
         // refresh page after reset values
         refreshSelectMenus();
-        alert("Prev page pp:"+mobile.getMobileValue("prevpage")+" np:"+mobile.getMobileValue("nextpage"));
+        //alert("Prev page pp:"+mobile.getMobileValue("prevpage")+" np:"+mobile.getMobileValue("nextpage"));
         }
       //alert(String.concat("cookie is created with ",$("#select-next-page-direction").val()," and now cookie is " ,mobile.getMobileValue('nextpage')));
     } catch (err) {
