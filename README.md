@@ -1,6 +1,9 @@
 ### Note :
 In previous version, it has some components from the "PhoneGap". But it seems to be not the objective of DocBook XSL mobile. Using this package user can build mobile output and separately download PhoneGap package and replace with it's asserts at build time.
 
+### Documentation :
+The documentation for DocBook Mobile XSL : http://gihankarunarathne.github.com/DocBook-xsl-mobile/
+
 ###	How to Use it ?
 
 1. First you have to download the docbook xsl-1.77.1 version from http://sourceforge.net/projects/docbook/files/docbook-xsl/1.77.1/
